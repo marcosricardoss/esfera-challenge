@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "challenge"
+version = "0.0.0"
+authors = [
+    { name = "challenge" }
+]
+description = "Esfera Challenge Project"
+readme = "README.md"
+requires-python = ">=3.12"
+
+[tool.setuptools]
+packages = ["challenge"]
+
+[tool.setuptools.package-dir]
+"" = "src"

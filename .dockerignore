@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# documentation
+docs/
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Django stuff:
+*.log
+db.sqlite3
+staticfiles/
+media/
+.env
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage
+
+# Ruff
+.ruff_cache
+
+# Egg info directories
+*.egg-info/
+
+# IDEs / Text Editors
+.devcontainer/
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# AWS
+.aws-sam/
+.cloudformation/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Cache
+*.cache
+
+# Outros arquivos temporários
+*.tmp
+*.lock
+*.pid

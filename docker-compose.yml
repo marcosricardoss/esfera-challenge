@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: app:latest
+    hostname: app
+    container_name: app
+    entrypoint: ''
+    command:
+      - sh
+      - -c
+      - |
+        python -m challenge
+    networks: [app]    
+    depends_on: [redis]
+    volumes:
+      - .:/opt/app  
+  
+  redis:
+    image: redis:latest    
+    hostname: app.redis
+    container_name: app.redis
+    networks: [app]
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    restart: always  
+
+networks:
+  app:
+    name: app  
