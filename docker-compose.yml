@@ -11,21 +11,50 @@ services:
       - sh
       - -c
       - |
-        python -m challenge
-    networks: [app]    
-    depends_on: [redis]
+        alembic upgrade head && python -m challenge
+    networks: [app]
+    depends_on: [redis, db]
     volumes:
-      - .:/opt/app  
-  
+      - .:/opt/app
+
+  worker:
+    image: app:latest  
+    hostname: app.worker
+    container_name: app.worker
+    entrypoint: ''
+    command: celery -A challenge.celery worker -l INFO
+    depends_on: [app]
+    networks: [app]
+    volumes:
+      - .:/opt/app
+
   redis:
     image: redis:latest    
     hostname: app.redis
     container_name: app.redis
     networks: [app]
     ports:
-      - "${REDIS_PORT}:${REDIS_PORT}"
+      - "${REDIS_PORT}:6379"
     restart: always  
+
+  db:
+    image: postgres:15
+    hostname: app.db
+    container_name: app.db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_POSTGRESQL_USER}
+      POSTGRES_PASSWORD: ${DB_POSTGRESQL_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRESQL_DB}
+    ports:
+      - "${DB_POSTGRESQL_PORT}:5432"
+    networks: [app]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 networks:
   app:
-    name: app  
+    name: app
+
+volumes:
+  postgres_data:

@@ -15,7 +15,6 @@ COPY requirements.txt .
 COPY requirements.dev.txt .
 COPY pip.conf /etc/pip.conf
 
-RUN pip install --no-cache-dir numpy 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements.dev.txt
 
@@ -31,8 +30,3 @@ WORKDIR /opt/app
 COPY . .
 
 RUN pip install -e .
-
-EXPOSE 8000
-RUN chmod a+x entrypoint.sh
-
-ENTRYPOINT ["/opt/app/entrypoint.sh"]

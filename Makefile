@@ -25,13 +25,13 @@ install-pre-commit:
 # running
 
 run:
-	echo "TODO: run command"
+	docker-compose up
 
 makemigrations:
-	echo "TODO: make migrations command"
+	alembic revision --autogenerate -m "cria tabela users"
 
 migrate:
-	echo "TODO: migrate command"
+	alembic upgrade head
 
 # testing
 
