@@ -1,4 +1,5 @@
 from celery import Celery
+from challenge.config import RATE_LIMIT
 
 celery_app = Celery(
     "challenge",
@@ -8,6 +9,5 @@ celery_app = Celery(
 )
 
 celery_app.conf.task_routes = {
-    "challenge.tasks.create_user_task": {"queue": "users"},
-    "user_created_event": {"queue": "events"},
+    "challenge.tasks.create_user_task": {"rate_limit": RATE_LIMIT}
 }

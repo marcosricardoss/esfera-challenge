@@ -6,6 +6,7 @@ from celery import shared_task
 
 from challenge.models import User, Address
 from challenge.services.unit_of_work import SqlAlchemyUnitOfWork
+from challenge.config import RATE_LIMIT
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +16,7 @@ def user_created_event(user_id: int, email: str):
     logger.info(f"UserCreated event received: ID={user_id}, Email={email}")
 
 
-@shared_task
+@shared_task(rate_limit=RATE_LIMIT)
 def create_user_task(user_data: dict, address_data: dict):
     uow = SqlAlchemyUnitOfWork()
 

@@ -27,6 +27,9 @@ install-pre-commit:
 run:
 	docker-compose up
 
+clean:
+	docker-compose down	
+
 makemigrations:
 	alembic revision --autogenerate -m "cria tabela users"
 

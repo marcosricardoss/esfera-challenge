@@ -7,3 +7,5 @@ DB_POSTGRESQL_DB = config("DB_POSTGRESQL_DB", default="app_db")
 DB_POSTGRESQL_URI = f"postgresql://{DB_POSTGRESQL_USER}:{DB_POSTGRESQL_PASSWORD}@{DB_POSTGRESQL_HOST}:5432/{DB_POSTGRESQL_DB}"
 
 DB_SQLITE_PATH = config("DB_SQLITE_PATH", default="sqlite:///database.db")
+
+RATE_LIMIT = config("RATE_LIMIT", default="5/s")
