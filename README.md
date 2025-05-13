@@ -49,6 +49,8 @@ Este repositório contém a solução para o **Desafio Esfera**, com foco em pro
   pytest
   ```
 
+ℹ️ Info: Os testes também são executados automaticamente via GitHub Actions a cada push ou pull request, garantindo a qualidade contínua do código.
+
 ---
 
 ### ⚙️ Configuração de processamento com Celery
