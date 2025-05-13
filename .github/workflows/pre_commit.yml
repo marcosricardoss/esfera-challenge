@@ -1,0 +1,30 @@
+name: Pre-Commit
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    container: python:3.12
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Git ByPass
+        run: |
+          git config --global --add safe.directory '*'
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run pre-commit
+        run: pre-commit run -a --show-diff-on-failure
